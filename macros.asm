@@ -14,3 +14,13 @@
 	BGE %contador,%condicao_parada, %desvio
 	j %loop
 .end_macro
+
+.macro read_int_rule(%rg, %parameter_1, %parameter_2, %desvio, %condicao)
+	# Rg: Destino
+	# Parameter_1 e Parameter_2 valores a serem comparados
+	# Desvio: Label de desvio
+	# Instrução de desvio. Ex: BNE
+	%condicao %parameter_1, %parameter_2, %desvio
+	read_int(%rg)
+	j %desvio
+.end_macro
