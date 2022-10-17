@@ -24,3 +24,13 @@
 	read_int(%rg)
 	j %desvio
 .end_macro
+
+
+.macro cmpi(%operando, %p1, %p2, %desvio) #Comparação com inteiro
+	# Operando: instrução.
+	# P1: inteiro.
+	# P2: registrador.
+	# Desvio: Rotulo de desvio.
+	li t0, %p1 
+	%operando, t0, %p2, %desvio
+.end_macro
