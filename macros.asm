@@ -4,6 +4,15 @@
 	ecall
 .end_macro
 
+.macro print_str (%str)
+	.data
+		Frase: .string %str
+	.text
+		li a7, 4
+		la a0, Frase
+		ecall
+.end_macro
+
 .macro read_int(%rg)
 	li a7,5
 	ecall
