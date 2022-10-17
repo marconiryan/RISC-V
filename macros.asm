@@ -15,17 +15,6 @@
 	j %loop
 .end_macro
 
-.macro read_int_rule(%rg, %parameter_1, %parameter_2, %desvio, %condicao)
-	# Rg: Destino
-	# Parameter_1 e Parameter_2 valores a serem comparados
-	# Desvio: Label de desvio
-	# Instrução de desvio. Ex: BNE
-	%condicao %parameter_1, %parameter_2, %desvio
-	read_int(%rg)
-	j %desvio
-.end_macro
-
-
 .macro cmpi(%operando, %p1, %p2, %desvio) #Comparação com inteiro
 	# Operando: instrução.
 	# P1: inteiro.
@@ -33,4 +22,14 @@
 	# Desvio: Rotulo de desvio.
 	li t0, %p1 
 	%operando, t0, %p2, %desvio
+.end_macro
+
+.macro read_int_rule(%rg, %parameter_1, %parameter_2, %desvio, %condicao)
+	# Rg: Destino
+	# Parameter_1 e Parameter_2 valores a serem comparados
+	# Desvio: Label de desvio
+	# Instrução de desvio. Ex: BNE
+	cmpi(%condicao %parameter_1, %parameter_2, %desvio)
+	read_int(%rg)
+	j %desvio
 .end_macro
