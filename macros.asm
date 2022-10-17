@@ -75,3 +75,28 @@
 		addi %retorno, %r3,0
 	Desvio:
 .end_macro
+
+
+.macro load_str (%str,%rg)
+	.data
+		Frase: .string %str
+	.text
+		la %rg, Frase
+.end_macro
+
+
+.macro confirm_dialog(%frase)
+	li a7, 50
+	load_str(%frase,a0)
+	ecall
+.end_macro
+
+.macro midi_out(%nota, %tempo, %instrumento, %volume)
+	li a7, 31
+	li a0, %nota
+	li a1, %tempo
+	li a2, %instrumento
+	li a3, %volume
+	ecall
+
+.end_macro
